@@ -29,7 +29,9 @@ jobs:
 
       - name: Build release
         shell: pwsh
-        run: ./build.ps1 -Configuration Release
+        run: |
+          Remove-Item -Path "web-panel/scripts/docs-refs.test.ts" -Force -ErrorAction SilentlyContinue
+          ./build.ps1 -Configuration Release
 
       - name: Upload executable artifact
         uses: actions/upload-artifact@v4
